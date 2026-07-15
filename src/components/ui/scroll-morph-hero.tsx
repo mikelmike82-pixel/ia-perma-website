@@ -25,10 +25,17 @@ interface Target {
   opacity: number;
 }
 
-const IMG_WIDTH = 60;
-const IMG_HEIGHT = 85;
-
-function FlipCard({ src, target }: { src: string; target: Target }) {
+function FlipCard({
+  src,
+  target,
+  width,
+  height,
+}: {
+  src: string;
+  target: Target;
+  width: number;
+  height: number;
+}) {
   return (
     <motion.div
       animate={{
@@ -41,8 +48,8 @@ function FlipCard({ src, target }: { src: string; target: Target }) {
       transition={{ type: "spring", stiffness: 40, damping: 15 }}
       style={{
         position: "absolute",
-        width: IMG_WIDTH,
-        height: IMG_HEIGHT,
+        width,
+        height,
         transformStyle: "preserve-3d",
       }}
       className="cursor-pointer group"
@@ -94,7 +101,6 @@ export function ScrollMorphHero({
   brandLabel,
   children,
 }: ScrollMorphHeroProps) {
-
   const sectionRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const totalImages = images.length;
@@ -120,8 +126,6 @@ export function ScrollMorphHero({
     return () => observer.disconnect();
   }, []);
 
-  // Real scroll progress across the pinned (sticky) section — 0 at top, 1 once
-  // the user has scrolled through the full pinned distance.
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
@@ -158,6 +162,12 @@ export function ScrollMorphHero({
     };
   }, []);
 
+  // Responsive card size — shrinks on narrow screens so cards don't overlap
+  // once the circle radius also shrinks.
+  const width = containerSize.width;
+  const cardWidth = width > 0 && width < 400 ? 38 : width < 768 ? 48 : 60;
+  const cardHeight = width > 0 && width < 400 ? 54 : width < 768 ? 68 : 85;
+
   const scatterPositions = useMemo(
     () =>
       images.map(() => ({
@@ -191,32 +201,33 @@ export function ScrollMorphHero({
 
   return (
     <section id="top" ref={sectionRef} className="relative h-[220vh]">
-<div
+      <div
         ref={stickyRef}
-        style={{ height: "100vh", ...( { height: "100dvh" } as React.CSSProperties) }}
+        style={{ height: "100vh", ...({ height: "100dvh" } as React.CSSProperties) }}
         className="sticky top-0 w-full overflow-hidden bg-gradient-to-b from-muted via-background to-background"
       >
-    {brandLabel ? (
+        {brandLabel ? (
           <div className="pointer-events-none absolute left-6 top-16 z-0 hidden md:left-10 md:top-20 md:block lg:left-16 lg:top-24">
             {brandLabel}
           </div>
         ) : null}
-<div className="pointer-events-none absolute z-0 top-1/2 left-1/2 flex w-full max-w-[240px] -translate-x-1/2 -translate-y-1/2 flex-col items-center px-2 text-center sm:max-w-[320px] md:max-w-sm">
+
+        <div className="pointer-events-none absolute z-0 top-1/2 left-1/2 flex w-full max-w-[210px] -translate-x-1/2 -translate-y-1/2 flex-col items-center px-2 text-center sm:max-w-[320px] md:max-w-sm">
           <motion.h1
             style={{ opacity: introOpacity }}
-            className="text-sm font-semibold leading-snug tracking-tight text-ink sm:text-lg md:text-xl lg:text-2xl"
+            className="text-xs font-semibold leading-snug tracking-tight text-ink sm:text-lg md:text-xl lg:text-2xl"
           >
             {introTitle}
           </motion.h1>
           <motion.p
             style={{ opacity: introOpacity }}
-            className="mt-3 text-[10px] font-bold uppercase tracking-[0.2em] text-primary-dark sm:text-xs"
+            className="mt-2 text-[9px] font-bold uppercase tracking-[0.15em] text-primary-dark sm:mt-3 sm:text-xs sm:tracking-[0.2em]"
           >
             {introSubtitle}
           </motion.p>
         </div>
 
-<motion.div
+        <motion.div
           style={{ opacity: contentOpacity, y: contentY }}
           className="pointer-events-none absolute inset-x-0 top-20 bottom-4 z-10 flex justify-center px-4 sm:top-24"
         >
@@ -238,14 +249,19 @@ export function ScrollMorphHero({
             if (introPhase === "scatter") {
               target = scatterPositions[i];
             } else if (introPhase === "line") {
-              const spacing = 68;
+              const spacing = cardWidth + 8;
               const totalWidth = totalImages * spacing;
               target = { x: i * spacing - totalWidth / 2, y: 0, rotation: 0, scale: 1, opacity: 1 };
             } else {
               const isMobile = containerSize.width < 768;
               const minDimension = Math.min(containerSize.width, containerSize.height) || 800;
 
-              const circleRadius = Math.min(minDimension * 0.32, 300);
+              // Larger multiplier on mobile so cards spread out enough to
+              // avoid overlapping once card size shrinks.
+              const circleRadius = isMobile
+                ? Math.min(minDimension * 0.46, 260)
+                : Math.min(minDimension * 0.32, 300);
+
               const circleAngle = (i / totalImages) * 360;
               const circleRad = (circleAngle * Math.PI) / 180;
               const circlePos = {
@@ -283,7 +299,9 @@ export function ScrollMorphHero({
               };
             }
 
-            return <FlipCard key={i} src={src} target={target} />;
+            return (
+              <FlipCard key={i} src={src} target={target} width={cardWidth} height={cardHeight} />
+            );
           })}
         </div>
       </div>
