@@ -45,7 +45,7 @@ function FlipCard({
         scale: target.scale,
         opacity: target.opacity,
       }}
-      transition={{ type: "spring", stiffness: 40, damping: 15 }}
+transition={{ type: "spring", stiffness: 90, damping: 16 }}
       style={{
         position: "absolute",
         width,
@@ -132,10 +132,10 @@ export function ScrollMorphHero({
   });
 
   const morphProgress = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
-  const smoothMorph = useSpring(morphProgress, { stiffness: 40, damping: 20 });
+const smoothMorph = useSpring(morphProgress, { stiffness: 100, damping: 22 });
 
   const shuffleProgress = useTransform(scrollYProgress, [0.4, 1], [0, 1]);
-  const smoothShuffle = useSpring(shuffleProgress, { stiffness: 40, damping: 20 });
+  const smoothShuffle = useSpring(shuffleProgress, { stiffness: 100, damping: 22 });
 
   const mouseX = useMotionValue(0);
   const smoothMouseX = useSpring(mouseX, { stiffness: 30, damping: 20 });
@@ -153,9 +153,9 @@ export function ScrollMorphHero({
     return () => el.removeEventListener("mousemove", handleMouseMove);
   }, [mouseX]);
 
-  useEffect(() => {
-    const t1 = setTimeout(() => setIntroPhase("line"), 400);
-    const t2 = setTimeout(() => setIntroPhase("settled"), 1400);
+useEffect(() => {
+    const t1 = setTimeout(() => setIntroPhase("line"), 150);
+    const t2 = setTimeout(() => setIntroPhase("settled"), 550);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);

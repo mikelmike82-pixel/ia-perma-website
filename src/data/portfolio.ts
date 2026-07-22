@@ -8,6 +8,8 @@ import {
   PackageOpen,
   PackageCheck,
   RefreshCw,
+  QrCode,
+  MessageSquareText,
   type LucideIcon,
 } from "lucide-react";
 
@@ -167,7 +169,7 @@ export const portfolioItems: PortfolioItem[] = [
       "Outbound volume reporting",
     ],
   },
-  {
+{
     id: "in-process-packaging",
     icon: RefreshCw,
     title: "In-Process Packaging Management",
@@ -183,6 +185,42 @@ export const portfolioItems: PortfolioItem[] = [
       "Bottleneck and delay flagging",
       "Production stage reporting",
       "Cross-stage handoff logging",
+    ],
+  },
+  {
+    id: "nestle-qr",
+    icon: QrCode,
+    title: "QR Serialization System — Nestlé",
+    category: "Traceability",
+    description:
+      "Unique-identity serialization system generating and tracking a distinct QR code for every bottle produced.",
+    challenge:
+      "Nestlé needed a way to give every individual bottle a unique, trackable identity at production scale, without slowing down the line.",
+    solution:
+      "IA Perma built a high-throughput serialization system that generates, assigns, and validates a unique QR code per unit, integrated directly into the production and packaging workflow.",
+    features: [
+      "Unique QR code per unit at scale",
+      "Real-time production line integration",
+      "Duplicate and tamper detection",
+      "Full batch traceability reporting",
+    ],
+  },
+  {
+    id: "ia-perma-communication",
+    icon: MessageSquareText,
+    title: "IA Perma Communication",
+    category: "Internal Tools",
+    description:
+      "A live team workgroup communication application built in-house to power our own day-to-day collaboration.",
+    challenge:
+      "Our own team needed a fast, reliable communication tool shaped exactly around how we work, without the bloat of generic off-the-shelf apps.",
+    solution:
+      "IA Perma designed and built its own live communication platform from scratch — the same caliber of software we deliver to clients, running our own team every day.",
+    features: [
+      "Real-time messaging and workgroups",
+      "Built and used in-house daily",
+      "Custom-fit to our own workflow",
+      "Live, production-grade application",
     ],
   },
 ];

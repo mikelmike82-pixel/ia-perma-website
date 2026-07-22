@@ -61,23 +61,7 @@ export function FutureVision() {
           <ImageAccordion items={accordionItems} defaultActiveIndex={0} />
         </div>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          {pillars.map((pillar) => {
-            const Icon = pillar.icon;
-            return (
-              <div
-                key={pillar.title}
-                className="flex flex-col gap-4 rounded-2xl border border-border bg-surface/80 p-6 backdrop-blur"
-              >
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-white">
-                  <Icon size={20} />
-                </div>
-                <h3 className="text-base font-semibold text-ink">{pillar.title}</h3>
-                <p className="text-sm leading-relaxed text-body-text">{pillar.description}</p>
-              </div>
-            );
-          })}
-        </div>
+
       </div>
     </section>
   );
