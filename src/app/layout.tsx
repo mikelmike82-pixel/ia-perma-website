@@ -73,7 +73,44 @@ export default function RootLayout({
       lang="en"
       className={`${spaceGrotesk.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">{children}
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "IA Perma",
+      url: "https://iaperma.com",
+      logo: "https://iaperma.com/images/logo.png",
+      description:
+        "IA Perma builds custom ERP, POS, inventory, and management software that automates operations for growing businesses.",
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+92-371-8071116",
+        email: "iaperma63@gmail.com",
+        contactType: "customer service",
+      },
+    }),
+  }}
+/>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "IA Perma",
+      url: "https://iaperma.com",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: "https://iaperma.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string",
+      },
+    }),
+  }}
+/>
+      </body>
     </html>
   );
 }
