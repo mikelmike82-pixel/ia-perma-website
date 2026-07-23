@@ -39,9 +39,9 @@ function TestimonialCarousel() {
     return () => stop();
   }, [length]);
 
-  return (
-    <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-      <div className="relative mx-auto aspect-square w-full max-w-sm">
+return (
+    <div className="flex flex-col gap-6">
+      <div className="relative mx-auto aspect-square w-full max-w-[220px] sm:max-w-xs">
         {testimonials.map((testimonial, index) => {
           const isActive = index === activeIndex;
           const isLeft = (activeIndex - 1 + length) % length === index;
@@ -77,8 +77,8 @@ function TestimonialCarousel() {
           );
         })}
       </div>
-
-      <div className="flex flex-col gap-5">
+      
+<div className="flex flex-col gap-3 sm:gap-5">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeIndex}
@@ -164,14 +164,14 @@ function ReviewForm() {
   const isSubmitting = status === "submitting";
 
   return (
-    <div className="rounded-3xl border border-border bg-surface p-6 sm:p-8">
-      <h3 className="text-lg font-semibold text-ink">Share your experience</h3>
-      <p className="mt-1 text-sm text-body-text">
+<div className="rounded-2xl border border-border bg-surface p-4 sm:rounded-3xl sm:p-8">
+      <h3 className="text-base font-semibold text-ink sm:text-lg">Share your experience</h3>
+      <p className="mt-1 text-xs text-body-text sm:text-sm">
         Worked with IA Perma? We&apos;d love to hear about it. Reviews are checked before
         being published.
       </p>
 
-      <form onSubmit={handleSubmit} noValidate className="mt-6 flex flex-col gap-4">
+      <form onSubmit={handleSubmit} noValidate className="mt-4 flex flex-col gap-3 sm:mt-6 sm:gap-4">
         {!WEB3FORMS_ACCESS_KEY ? (
           <p className="rounded-xl border border-accent/30 bg-accent/10 px-4 py-3 text-xs text-accent-dark">
             Form is not fully configured yet: add your Web3Forms access key to
@@ -184,7 +184,7 @@ function ReviewForm() {
           </p>
         ) : null}
 
-        <div className="grid gap-4 sm:grid-cols-2">
+<div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
           <div className="flex flex-col gap-2">
             <label htmlFor="review-name" className="text-sm font-medium text-ink">
               Your Name <span className="text-accent">*</span>
@@ -260,7 +260,7 @@ function ReviewForm() {
             id="review-message"
             name="message"
             required
-            rows={4}
+      rows={3}
             className="resize-none rounded-xl border border-border bg-background px-4 py-3 text-sm text-ink outline-none transition-colors focus:border-primary"
             placeholder="Tell us about your experience working with IA Perma"
           />
@@ -302,7 +302,7 @@ function ReviewForm() {
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="bg-muted/60 py-24 sm:py-32">
+    <section id="testimonials" className="bg-muted/60 py-16 sm:py-24 lg:py-32">
       <div className="container-page">
         <SectionHeading
           eyebrow="Client Voices"
@@ -310,12 +310,9 @@ export function Testimonials() {
           description="Real feedback from teams running on systems we've built — and we'd love to hear from you too."
         />
 
-        <div className="mt-14">
-          <TestimonialCarousel />
-        </div>
-
-        <div className="mx-auto mt-16 max-w-2xl">
+        <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-12">
           <ReviewForm />
+          <TestimonialCarousel />
         </div>
       </div>
     </section>
