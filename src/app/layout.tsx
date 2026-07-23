@@ -18,6 +18,9 @@ const siteUrl = "https://iaperma.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  verification: {
+    google: "oltDZgwKCGIUQCd2cEo6UlSbJp80Xv0tx4UmH4Uo8Ok",
+  },
   title: {
     default: "IA Perma | Engineering Digital Systems That Power Business Growth",
     template: "%s | IA Perma",
