@@ -8,8 +8,8 @@ import { Process } from "@/components/sections/Process";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Industries } from "@/components/sections/Industries";
 import { FutureVision } from "@/components/sections/FutureVision";
-import { Contact } from "@/components/sections/Contact";
 import { Testimonials } from "@/components/sections/Testimonials";
+import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -21,10 +21,10 @@ export default function Home() {
         <Services />
         <WhyChooseUs />
         <Process />
-<Portfolio />
-        <Testimonials />
+        <Portfolio />
         <Industries />
         <FutureVision />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />
