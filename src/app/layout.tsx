@@ -56,8 +56,8 @@ export const metadata: Metadata = {
       "Custom ERP, automation, and management software engineered for growing businesses.",
     images: ["/images/logo.png"],
   },
-  icons: {
-    icon: "/images/logo.png",
+icons: {
+    icon: "/favicon.ico",
   },
 };
 
@@ -94,6 +94,31 @@ export default function RootLayout({
         email: "iaperma63@gmail.com",
         contactType: "customer service",
       },
+    }),
+  }}
+/>
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SiteNavigationElement",
+      name: [
+        "Services",
+        "Our Process",
+        "Portfolio",
+        "Industries",
+        "Reviews",
+        "Contact",
+      ],
+      url: [
+        "https://iaperma.com/#services",
+        "https://iaperma.com/#process",
+        "https://iaperma.com/#portfolio",
+        "https://iaperma.com/#industries",
+        "https://iaperma.com/#testimonials",
+        "https://iaperma.com/#contact",
+      ],
     }),
   }}
 />
