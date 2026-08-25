@@ -8,7 +8,8 @@ const pillars = [
     title: "AI Integration",
     description: "Embedding intelligent automation directly into everyday business systems.",
     image:
-      "https://images.unsplash.com/photo-1677756119517-756a188d2d94?auto=format&fit=crop&w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
   },
   {
     icon: LineChart,
