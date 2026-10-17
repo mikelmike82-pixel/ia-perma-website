@@ -62,8 +62,8 @@ export function Hero() {
     >
 <div className="rounded-3xl border border-border bg-surface/95 p-5 backdrop-blur sm:p-7 md:p-8">
         <WhoWeAreCarousel
-          photoSrc="/images/ceo.png"
-          photoAlt="IA Perma leadership"
+          photoSrc="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+          photoAlt="IA Perma"
           slides={[
             {
               id: "intro",
