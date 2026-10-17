@@ -62,7 +62,7 @@ export function Hero() {
     >
 <div className="rounded-3xl border border-border bg-surface/95 p-5 backdrop-blur sm:p-7 md:p-8">
         <WhoWeAreCarousel
-          photoSrc="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+          photoSrc="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&h=1000&q=80"
           photoAlt="IA Perma"
           slides={[
             {
